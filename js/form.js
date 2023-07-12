@@ -12,8 +12,12 @@ function updateActiveForm() {
     for (let i = 0; i < formTabs.length; i++) {
         let form = forms[i];
         if(!form) continue;
-        let input = form.querySelector('input') || form.querySelector('textarea');
-        let focused = document.activeElement === input;
+        let focused = false;
+        form.querySelectorAll('input, textarea').forEach((input) => {
+            if(document.activeElement === input) {
+                focused = true;
+            }
+        });
 
         if (focused) {
             formTabs[i].classList.add('active');
